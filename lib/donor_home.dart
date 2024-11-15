@@ -21,6 +21,14 @@ class _DonorHomeState extends State<DonorHome> {
   bool get _isAnyCategorySelected =>
       _selectedCategories.values.any((isSelected) => isSelected);
 
+  // Define category colors
+  final Map<String, Color> _categoryColors = {
+    'Food': Colors.orange, // Color for Food
+    'Clothes': Colors.blue, // Color for Clothes
+    'Money': Colors.green, // Color for Money
+    'Others': Colors.grey, // Color for Others
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,26 +59,39 @@ class _DonorHomeState extends State<DonorHome> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Select Text with Tick Icon Container
+            _buildSelectTextWithTick('Select Donation Category'),
+            const SizedBox(height: 13), // Add space between heading and grid
             Expanded(
-              child: ListView(
-                children: _selectedCategories.keys.map((category) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 5.0), // Add spacing between cards
-                    child: _buildCategoryCard(
-                      icon: _getIconForCategory(category),
-                      title: category,
-                      description: _getDescriptionForCategory(category),
-                      isSelected: _selectedCategories[category]!,
-                      onTap: () {
-                        setState(() {
-                          _selectedCategories[category] =
-                              !_selectedCategories[category]!;
-                        });
-                      },
-                    ),
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing:
+                      12.0, // Reduce the horizontal space between cards
+                  mainAxisSpacing:
+                      12.0, // Reduce the vertical space between cards
+                  childAspectRatio:
+                      1.2, // Adjusted aspect ratio for shorter cards
+                ),
+                itemCount: _selectedCategories.keys.length,
+                itemBuilder: (context, index) {
+                  final category = _selectedCategories.keys.elementAt(index);
+                  return _buildCategoryCard(
+                    icon: _getIconForCategory(category),
+                    title: category,
+                    description: _getDescriptionForCategory(category),
+                    isSelected: _selectedCategories[category]!,
+                    onTap: () {
+                      setState(() {
+                        _selectedCategories[category] =
+                            !_selectedCategories[category]!;
+                      });
+                    },
+                    iconColor: _categoryColors[category]!, // Use category color
+                    textColor: _categoryColors[category]!, // Use category color
                   );
-                }).toList(),
+                },
               ),
             ),
             // Next button
@@ -112,7 +133,8 @@ class _DonorHomeState extends State<DonorHome> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon:
+                Icon(Icons.card_giftcard), // Updated to a donation-related icon
             label: 'My Donations',
           ),
           BottomNavigationBarItem(
@@ -122,6 +144,7 @@ class _DonorHomeState extends State<DonorHome> {
         ],
         selectedItemColor: lightBlue, // Highlight the selected item
         unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true, // Show labels even for unselected items
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -139,6 +162,48 @@ class _DonorHomeState extends State<DonorHome> {
             }
           });
         },
+        backgroundColor:
+            Colors.white, // Optional: Change background color of bottom bar
+        selectedLabelStyle: const TextStyle(
+          fontSize: 14, // Set font size for selected label
+          fontWeight: FontWeight.bold,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 12, // Set font size for unselected label
+          fontWeight: FontWeight.normal,
+        ),
+      ),
+    );
+  }
+
+  // Custom container for text with select tick icon
+  Widget _buildSelectTextWithTick(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      decoration: BoxDecoration(
+        border: Border.all(color: lightBlue, width: 2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.arrow_drop_down, // Downward arrow icon
+            color: lightBlue, // Icon color
+            size: 24,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center, // Center the text
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -149,44 +214,49 @@ class _DonorHomeState extends State<DonorHome> {
     required String description,
     required bool isSelected,
     required VoidCallback onTap,
+    required Color iconColor,
+    required Color textColor,
   }) {
     return GestureDetector(
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0), // Slightly larger rounding
+          borderRadius: BorderRadius.circular(12.0),
         ),
-        elevation: 4, // Slightly higher elevation
+        elevation: 4,
         child: Padding(
-          padding:
-              const EdgeInsets.all(18.0), // Increase padding for larger cards
-          child: Row(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min, // Shrink to fit the content
             children: [
               Icon(
                 icon,
-                size: 50, // Larger icon
-                color: lightBlue,
+                size: 57, // Reduced icon size
+                color: iconColor, // Dynamic icon color
               ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 20, // Slightly larger font size
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      description,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  ],
+              const SizedBox(height: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18, // Reduced title font size
+                  fontWeight: FontWeight.bold,
+                  color: textColor, // Dynamic text color
                 ),
+                textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 6),
+              Text(
+                description,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.black, // Set description color to black
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                  height:
+                      10), // Adjusted spacing between description and checkbox
               Checkbox(
                 value: isSelected,
                 onChanged: (value) {
@@ -194,7 +264,7 @@ class _DonorHomeState extends State<DonorHome> {
                     _selectedCategories[title] = value!;
                   });
                 },
-                shape: const CircleBorder(), // Circular checkbox
+                shape: const CircleBorder(),
                 activeColor: Colors.green,
                 checkColor: Colors.white,
               ),
