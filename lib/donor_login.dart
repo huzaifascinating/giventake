@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart'; // Import your main.dart or where you have defined your colors
+import 'donor_home.dart';
 
 class DonorLogin extends StatelessWidget {
   const DonorLogin({super.key});
@@ -65,7 +66,10 @@ class DonorLogin extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle donor login logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const DonorHome()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: lightBlue,

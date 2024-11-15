@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/role_screen.dart';
+import 'package:giventake/splash.dart';
+import 'donor_home.dart';
 
 const Color primaryColor = Colors.white;
 const Color secondaryColor = Colors.black87;
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(color: darkBlue),
         ),
       ),
-      home: const ChooseRoleScreen(),
+      home: const DonorHome(),
     );
   }
 }
