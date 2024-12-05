@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/donor_categoryform.dart';
 import 'main.dart'; // Ensure your `lightBlue` color is defined here
 
 class DonorHome extends StatefulWidget {
@@ -23,10 +24,10 @@ class _DonorHomeState extends State<DonorHome> {
 
   // Define category colors
   final Map<String, Color> _categoryColors = {
-    'Food': Colors.orange, // Color for Food
-    'Clothes': Colors.blue, // Color for Clothes
-    'Money': Colors.green, // Color for Money
-    'Others': Colors.grey, // Color for Others
+    'Food': Colors.orange,
+    'Clothes': Colors.blue,
+    'Money': Colors.green,
+    'Others': Colors.grey,
   };
 
   @override
@@ -34,13 +35,13 @@ class _DonorHomeState extends State<DonorHome> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.person), // User logo placeholder
+          icon: const Icon(Icons.person),
           onPressed: () {
             // Handle user profile action
           },
         ),
         title: const Text(
-          'Welcome, Username', // Replace with dynamic username
+          'Welcome, Username',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -48,7 +49,7 @@ class _DonorHomeState extends State<DonorHome> {
         elevation: 1,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications), // Notification bell icon
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Handle notification action
             },
@@ -59,20 +60,17 @@ class _DonorHomeState extends State<DonorHome> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Select Text with Tick Icon Container
+            // Select Donation Category with Next Button
             _buildSelectTextWithTick('Select Donation Category'),
-            const SizedBox(height: 13), // Add space between heading and grid
+            const SizedBox(height: 13),
             Expanded(
               child: GridView.builder(
                 padding: EdgeInsets.zero,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing:
-                      12.0, // Reduce the horizontal space between cards
-                  mainAxisSpacing:
-                      12.0, // Reduce the vertical space between cards
-                  childAspectRatio:
-                      1.2, // Adjusted aspect ratio for shorter cards
+                  crossAxisSpacing: 12.0,
+                  mainAxisSpacing: 12.0,
+                  childAspectRatio: 1.175,
                 ),
                 itemCount: _selectedCategories.keys.length,
                 itemBuilder: (context, index) {
@@ -88,38 +86,10 @@ class _DonorHomeState extends State<DonorHome> {
                             !_selectedCategories[category]!;
                       });
                     },
-                    iconColor: _categoryColors[category]!, // Use category color
-                    textColor: _categoryColors[category]!, // Use category color
+                    iconColor: _categoryColors[category]!,
+                    textColor: _categoryColors[category]!,
                   );
                 },
-              ),
-            ),
-            // Next button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _isAnyCategorySelected
-                    ? () {
-                        final selectedCategories = _selectedCategories.entries
-                            .where((entry) => entry.value)
-                            .map((entry) => entry.key)
-                            .toList();
-
-                        // Example: Print the selected categories
-                        print('Selected Categories: $selectedCategories');
-
-                        // Navigate to the next page with selected categories if required
-                      }
-                    : null, // Disable button when no category is selected
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: lightBlue,
-                  foregroundColor: Colors.white,
-                  disabledBackgroundColor:
-                      Colors.grey[300], // Disabled button background
-                  disabledForegroundColor:
-                      Colors.grey[500], // Disabled button text color
-                ),
-                child: const Text('Next'),
               ),
             ),
           ],
@@ -133,8 +103,7 @@ class _DonorHomeState extends State<DonorHome> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon:
-                Icon(Icons.card_giftcard), // Updated to a donation-related icon
+            icon: Icon(Icons.card_giftcard),
             label: 'My Donations',
           ),
           BottomNavigationBarItem(
@@ -142,34 +111,22 @@ class _DonorHomeState extends State<DonorHome> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: lightBlue, // Highlight the selected item
+        selectedItemColor: lightBlue,
         unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true, // Show labels even for unselected items
+        showUnselectedLabels: true,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
             // Handle navigation based on selected tab
-            switch (index) {
-              case 0:
-                // Navigate to Home
-                break;
-              case 1:
-                // Navigate to My Donations
-                break;
-              case 2:
-                // Navigate to Profile
-                break;
-            }
           });
         },
-        backgroundColor:
-            Colors.white, // Optional: Change background color of bottom bar
+        backgroundColor: Colors.white,
         selectedLabelStyle: const TextStyle(
-          fontSize: 14, // Set font size for selected label
+          fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
         unselectedLabelStyle: const TextStyle(
-          fontSize: 12, // Set font size for unselected label
+          fontSize: 12,
           fontWeight: FontWeight.normal,
         ),
       ),
@@ -187,8 +144,8 @@ class _DonorHomeState extends State<DonorHome> {
       child: Row(
         children: [
           Icon(
-            Icons.arrow_drop_down, // Downward arrow icon
-            color: lightBlue, // Icon color
+            Icons.arrow_drop_down,
+            color: lightBlue,
             size: 24,
           ),
           const SizedBox(width: 8),
@@ -200,7 +157,41 @@ class _DonorHomeState extends State<DonorHome> {
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),
-              textAlign: TextAlign.center, // Center the text
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            width: 60,
+            height: 30, // Reduced height
+            child: ElevatedButton.icon(
+              onPressed: _isAnyCategorySelected
+                  ? () {
+                      final selectedCategories = _selectedCategories.entries
+                          .where((entry) => entry.value)
+                          .map((entry) => entry.key)
+                          .toList();
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DonorCategoryForm(
+                              selectedCategories: selectedCategories),
+                        ),
+                      );
+                    }
+                  : null,
+              label: const Text('Next'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: lightBlue,
+                foregroundColor: Colors.white,
+                disabledBackgroundColor: Colors.grey[300],
+                disabledForegroundColor: Colors.grey[500],
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                textStyle: const TextStyle(
+                  fontSize: 12, // Smaller font size
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ],
@@ -228,20 +219,20 @@ class _DonorHomeState extends State<DonorHome> {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min, // Shrink to fit the content
+            mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 icon,
-                size: 57, // Reduced icon size
-                color: iconColor, // Dynamic icon color
+                size: 57,
+                color: iconColor,
               ),
               const SizedBox(height: 10),
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 18, // Reduced title font size
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: textColor, // Dynamic text color
+                  color: textColor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -250,13 +241,11 @@ class _DonorHomeState extends State<DonorHome> {
                 description,
                 style: const TextStyle(
                   fontSize: 12,
-                  color: Colors.black, // Set description color to black
+                  color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                  height:
-                      10), // Adjusted spacing between description and checkbox
+              const SizedBox(height: 10),
               Checkbox(
                 value: isSelected,
                 onChanged: (value) {
