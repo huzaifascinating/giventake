@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/role_screen.dart';
 import 'package:giventake/splash.dart';
-import 'donor_home.dart';
+import 'donor_home_tabs.dart';
 
 const Color primaryColor = Colors.white;
 const Color secondaryColor = Colors.black87;
 const Color backgroundColor =
-    Color.fromARGB(255, 231, 231, 231); // Light grey, off-white
+    Color.fromARGB(255, 231, 231, 231);
 const Color darkBlue = Color(0xFF024AA3);
 const Color lightBlue = Color.fromARGB(255, 67, 142, 234);
 const Color splashBackgroundColor = Color(0xFF2193FF);

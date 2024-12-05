@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/donor_categoryform.dart';
-import 'main.dart'; // Ensure your `lightBlue` color is defined here
 
-class DonorHome extends StatefulWidget {
-  const DonorHome({super.key});
+import 'main.dart';
 
+class DonationScreen extends StatefulWidget {
+  DonationScreen({super.key});
   @override
-  _DonorHomeState createState() => _DonorHomeState();
+  _DonationScreenState createState() => _DonationScreenState();
+
 }
 
-class _DonorHomeState extends State<DonorHome> {
-  final Map<String, bool> _selectedCategories = {
+
+class _DonationScreenState extends State<DonationScreen> {
+   final Map<String, bool> _selectedCategories = {
     'Food': false,
     'Clothes': false,
     'Money': false,
     'Others': false,
   };
-
-  int _currentIndex = 0; // Track the selected bottom navigation item
 
   bool get _isAnyCategorySelected =>
       _selectedCategories.values.any((isSelected) => isSelected);
@@ -30,32 +30,13 @@ class _DonorHomeState extends State<DonorHome> {
     'Others': Colors.grey,
   };
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.person),
-          onPressed: () {
-            // Handle user profile action
-          },
-        ),
-        title: const Text(
-          'Welcome, Username',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 1,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              // Handle notification action
-            },
-          ),
-        ],
-      ),
+      backgroundColor: backgroundColor,
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -95,45 +76,9 @@ class _DonorHomeState extends State<DonorHome> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'My Donations',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: lightBlue,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-            // Handle navigation based on selected tab
-          });
-        },
-        backgroundColor: Colors.white,
-        selectedLabelStyle: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-        ),
-      ),
     );
   }
-
-  // Custom container for text with select tick icon
+  
   Widget _buildSelectTextWithTick(String text) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -198,7 +143,7 @@ class _DonorHomeState extends State<DonorHome> {
       ),
     );
   }
-
+  
   Widget _buildCategoryCard({
     required IconData icon,
     required String title,
@@ -293,4 +238,7 @@ class _DonorHomeState extends State<DonorHome> {
         return 'No description available.';
     }
   }
+  
 }
+
+
