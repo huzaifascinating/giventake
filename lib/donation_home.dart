@@ -7,12 +7,10 @@ class DonationScreen extends StatefulWidget {
   DonationScreen({super.key});
   @override
   _DonationScreenState createState() => _DonationScreenState();
-
 }
 
-
 class _DonationScreenState extends State<DonationScreen> {
-   final Map<String, bool> _selectedCategories = {
+  final Map<String, bool> _selectedCategories = {
     'Food': false,
     'Clothes': false,
     'Money': false,
@@ -30,13 +28,10 @@ class _DonationScreenState extends State<DonationScreen> {
     'Others': Colors.grey,
   };
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -51,7 +46,7 @@ class _DonationScreenState extends State<DonationScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 12.0,
                   mainAxisSpacing: 12.0,
-                  childAspectRatio: 1.175,
+                  childAspectRatio: 0.970,
                 ),
                 itemCount: _selectedCategories.keys.length,
                 itemBuilder: (context, index) {
@@ -78,7 +73,7 @@ class _DonationScreenState extends State<DonationScreen> {
       ),
     );
   }
-  
+
   Widget _buildSelectTextWithTick(String text) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -143,7 +138,7 @@ class _DonationScreenState extends State<DonationScreen> {
       ),
     );
   }
-  
+
   Widget _buildCategoryCard({
     required IconData icon,
     required String title,
@@ -238,7 +233,4 @@ class _DonationScreenState extends State<DonationScreen> {
         return 'No description available.';
     }
   }
-  
 }
-
-
