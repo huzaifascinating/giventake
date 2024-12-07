@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'donor_selectorg.dart';
 
 class DonorCategoryForm extends StatelessWidget {
   final List<String> selectedCategories;
@@ -42,7 +43,11 @@ class DonorCategoryForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // On press functionality can be added here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DonorSelector()),
+                  );
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -68,6 +73,7 @@ class DonorCategoryForm extends StatelessWidget {
                 ),
               ),
             )
+
           ],
         ),
       ),

@@ -12,11 +12,7 @@ class DonationHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
-        title: Text('My Donations', style: TextStyle(color: primaryColor)),
-        backgroundColor: darkBlue,
-        iconTheme: IconThemeData(color: primaryColor),
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
