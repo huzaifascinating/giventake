@@ -133,15 +133,60 @@ class DonorSelector extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // Navigate to the Donor Validation page
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DonorValidationPage(
-                              organizationName: organization['name']!,
-                              organizationIcon: organization['icon']!,
-                            ),
-                          ),
+                        // Show confirmation dialog before navigating
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                  'Select ${organization['name']}'), // Dynamic title
+                              content: const Text(
+                                'Are you sure you want to select this organization?',
+                                style: TextStyle(
+                                    color: Colors.black), // Black text color
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    // Close the dialog
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                        color: Colors.black), // Black text
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    // Navigate to the DonorValidationPage
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DonorValidationPage(
+                                          organizationName:
+                                              organization['name']!,
+                                          organizationIcon:
+                                              organization['icon']!,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    'Confirm',
+                                    style: TextStyle(
+                                      color: Colors.white, // White text color
+                                    ),
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.blue, // Blue background
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
                       icon:

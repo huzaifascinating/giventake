@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async'; // Import for Timer
-import 'main.dart';
+import 'dart:async';
 
 class DonorValidationPage extends StatefulWidget {
   final String organizationName;
@@ -16,14 +15,21 @@ class DonorValidationPage extends StatefulWidget {
   _DonorValidationPageState createState() => _DonorValidationPageState();
 }
 
-class _DonorValidationPageState extends State<DonorValidationPage> {
+class _DonorValidationPageState extends State<DonorValidationPage>
+    with SingleTickerProviderStateMixin {
   late Timer _timer;
   int _start = 600;
+  late AnimationController _loadingAnimationController;
 
   @override
   void initState() {
     super.initState();
     _startTimer();
+    // Initialize AnimationController
+    _loadingAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..repeat(reverse: true);
   }
 
   void _startTimer() {
@@ -47,6 +53,7 @@ class _DonorValidationPageState extends State<DonorValidationPage> {
   @override
   void dispose() {
     _timer.cancel();
+    _loadingAnimationController.dispose(); // Dispose AnimationController
     super.dispose();
   }
 
@@ -69,11 +76,22 @@ class _DonorValidationPageState extends State<DonorValidationPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/nav.png',
+                  'assets/validation.png',
                   width: 200,
                   height: 200,
                 ),
-                const SizedBox(height: 50.0),
+                const SizedBox(height: 20.0), // Add some space
+                // Limit the width of the LinearProgressIndicator
+                Container(
+                  width: 200, // Set width here
+                  child: LinearProgressIndicator(
+                    value: null, // Indeterminate progress
+                    backgroundColor: Colors.grey[300],
+                    color: Colors.blue,
+                    minHeight: 5,
+                  ),
+                ),
+                const SizedBox(height: 30.0),
                 const Text(
                   "Waiting to connect...",
                   style: TextStyle(
@@ -82,51 +100,63 @@ class _DonorValidationPageState extends State<DonorValidationPage> {
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 10.0),
+                const Text(
+                  "Hang tight, the organization will contact you shortly\n for verification.",
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey,
+                  ),
+                  textAlign: TextAlign.center, // Center align text
+                ),
+                const SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.black12, // Light blue circle
                             shape: BoxShape.circle, // Circle shape
                           ),
                           padding: const EdgeInsets.all(
-                              10.0), // Padding inside the circle
+                              7.0), // Padding inside the circle
                           child: const Icon(Icons.person,
-                              size: 33, color: Colors.black), // White icon
+                              size: 25, color: Colors.black), // White icon
                         ),
                         const Text(
                           "Donor",
                           style: TextStyle(
-                            fontSize: 16.0,
+                            fontSize: 10.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(width: 10.0),
-                    const Icon(Icons.handshake,
-                        size: 30, color: Color.fromARGB(255, 200, 202, 183)),
-                    const SizedBox(width: 10.0),
+                    const SizedBox(width: 20.0),
+                    Container(
+                      width: 2,
+                      height: 50,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(width: 20.0),
                     Column(
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             widget.organizationIcon,
-                            width: 50,
-                            height: 50,
+                            width: 40,
+                            height: 40,
                             fit: BoxFit.cover,
                           ),
                         ),
                         Text(
                           widget.organizationName,
                           style: const TextStyle(
-                            fontSize: 16.0,
+                            fontSize: 10.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -146,7 +176,7 @@ class _DonorValidationPageState extends State<DonorValidationPage> {
                       style: const TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.red,
                       ),
                     ),
                   ),

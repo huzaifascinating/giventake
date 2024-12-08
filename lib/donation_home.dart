@@ -33,21 +33,13 @@ class _DonationScreenState extends State<DonationScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(13.0),
         child: Column(
           children: [
-            // Select Donation Category with Next Button
-            _buildSelectTextWithTick('Select Donation Category'),
-            const SizedBox(height: 13),
+            _buildSelectTextWithTick('Select Category'),
             Expanded(
-              child: GridView.builder(
+              child: ListView.builder(
                 padding: EdgeInsets.zero,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12.0,
-                  mainAxisSpacing: 12.0,
-                  childAspectRatio: 0.970,
-                ),
                 itemCount: _selectedCategories.keys.length,
                 itemBuilder: (context, index) {
                   final category = _selectedCategories.keys.elementAt(index);
@@ -76,19 +68,19 @@ class _DonationScreenState extends State<DonationScreen> {
 
   Widget _buildSelectTextWithTick(String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
       decoration: BoxDecoration(
-        border: Border.all(color: lightBlue, width: 2),
+        border: Border.all(color: Colors.transparent), // Remove border
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: [
+          // Add the info icon to the left of the text
           Icon(
-            Icons.arrow_drop_down,
-            color: lightBlue,
-            size: 24,
+            Icons.info, // Info icon
+            color: Colors.grey,
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 8), // Add some space between the icon and text
           Expanded(
             child: Text(
               text,
@@ -97,12 +89,11 @@ class _DonationScreenState extends State<DonationScreen> {
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
-            width: 60,
-            height: 30, // Reduced height
+            width: 55, // Reduced width
+            height: 28, // Reduced height
             child: ElevatedButton.icon(
               onPressed: _isAnyCategorySelected
                   ? () {
@@ -120,13 +111,15 @@ class _DonationScreenState extends State<DonationScreen> {
                       );
                     }
                   : null,
-              label: const Text('Next'),
+              icon: const Icon(Icons.arrow_forward), // Next icon
+              label: const SizedBox.shrink(), // No text, only icon
               style: ElevatedButton.styleFrom(
                 backgroundColor: lightBlue,
                 foregroundColor: Colors.white,
                 disabledBackgroundColor: Colors.grey[300],
                 disabledForegroundColor: Colors.grey[500],
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: const EdgeInsets.only(
+                    left: 8.0), // Reduced horizontal padding
                 textStyle: const TextStyle(
                   fontSize: 12, // Smaller font size
                   fontWeight: FontWeight.bold,
@@ -156,46 +149,77 @@ class _DonationScreenState extends State<DonationScreen> {
         ),
         elevation: 4,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                icon,
-                size: 57,
-                color: iconColor,
+              // Icon on the extreme left
+              Row(
+                children: [
+                  Icon(
+                    icon,
+                    size: 57,
+                    color: iconColor,
+                  ),
+                  const SizedBox(width: 10),
+                  // Category name and description to the right of the icon
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: textColor,
+                          ),
+                        ),
+                        Text(
+                          description,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
+              const SizedBox(height: 5),
+              // Select button with icon, full width below description
+              SizedBox(
+                width: double.infinity,
+                child: TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      _selectedCategories[title] = !_selectedCategories[title]!;
+                    });
+                  },
+                  icon: isSelected
+                      ? Icon(
+                          Icons.check_circle,
+                          color: Colors.green,
+                        )
+                      : SizedBox.shrink(), // No icon when not selected
+                  label: Text(
+                    isSelected ? 'Selected' : 'Select',
+                    style: TextStyle(
+                      color: isSelected ? Colors.green : Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: isSelected
+                        ? Colors.green.shade50
+                        : Colors.grey.shade300, // Grey color when not selected
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Checkbox(
-                value: isSelected,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCategories[title] = value!;
-                  });
-                },
-                shape: const CircleBorder(),
-                activeColor: Colors.green,
-                checkColor: Colors.white,
               ),
             ],
           ),
