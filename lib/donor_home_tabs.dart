@@ -16,7 +16,7 @@ class _DonorHomeState extends State<DonorHome> {
   final List<Widget> _screens = [
     DonationScreen(),
     DonationHistoryScreen(),
-    Center(child: Text('Profile')), // Replace with your Profile screen
+    const Center(child: Text('Profile')), // Replace with your Profile screen
   ];
 
   @override

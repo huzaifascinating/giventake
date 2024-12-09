@@ -64,10 +64,10 @@ class _DonorRegistrationState extends State<DonorRegistration> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
-            const SizedBox(width: 8),
-            const Text(
+            SizedBox(width: 8),
+            Text(
               'Donor Registration',
               style: TextStyle(color: Colors.black),
             ),
@@ -90,7 +90,7 @@ class _DonorRegistrationState extends State<DonorRegistration> {
                 child: Container(
                   width: 80,
                   height: 80,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: lightBlue,
                   ),
@@ -107,10 +107,10 @@ class _DonorRegistrationState extends State<DonorRegistration> {
               // Donor Name field with icon
               TextFormField(
                 controller: _donorNameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Donor Name',
-                  prefixIcon: const Icon(Icons.person, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.person, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
@@ -137,10 +137,10 @@ class _DonorRegistrationState extends State<DonorRegistration> {
               TextFormField(
                 controller: _passwordController,
                 focusNode: _passwordFocusNode,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: const Icon(Icons.lock, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
                 obscureText: true,
                 onChanged: _validatePassword,
@@ -207,10 +207,10 @@ class _DonorRegistrationState extends State<DonorRegistration> {
               // Confirm Password field
               TextFormField(
                 controller: _confirmPasswordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirm Password',
-                  prefixIcon: const Icon(Icons.lock_outline, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock_outline, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
                 obscureText: true,
                 validator: (value) {

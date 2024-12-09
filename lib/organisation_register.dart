@@ -66,10 +66,10 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
-            const SizedBox(width: 8),
-            const Text(
+            SizedBox(width: 8),
+            Text(
               'Organization Registration',
               style: TextStyle(color: Colors.black),
             ),
@@ -92,7 +92,7 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
                 child: Container(
                   width: 80,
                   height: 80,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: lightBlue,
                   ),
@@ -105,11 +105,11 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               ),
               const SizedBox(height: 30),
               // Organization Name field with icon
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Organization Name',
-                  prefixIcon: const Icon(Icons.business, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.business, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
@@ -136,10 +136,10 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               TextFormField(
                 controller: _passwordController,
                 focusNode: _passwordFocusNode, // Attach the FocusNode
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
-                  prefixIcon: const Icon(Icons.lock, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
                 obscureText: true,
                 onChanged: (value) {
@@ -207,10 +207,10 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               // Confirm Password field
               TextFormField(
                 controller: _confirmPasswordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirm Password',
-                  prefixIcon: const Icon(Icons.lock_outline, color: lightBlue),
-                  border: const UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock_outline, color: lightBlue),
+                  border: UnderlineInputBorder(),
                 ),
                 obscureText: true,
                 validator: (value) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'donor_validation.dart'; // Import DonorValidation page
 
 class DonorSelector extends StatelessWidget {
-  const DonorSelector({Key? key}) : super(key: key);
+  const DonorSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -173,15 +173,15 @@ class DonorSelector extends StatelessWidget {
                                       ),
                                     );
                                   },
+                                  style: TextButton.styleFrom(
+                                    backgroundColor:
+                                        Colors.blue, // Blue background
+                                  ),
                                   child: const Text(
                                     'Confirm',
                                     style: TextStyle(
                                       color: Colors.white, // White text color
                                     ),
-                                  ),
-                                  style: TextButton.styleFrom(
-                                    backgroundColor:
-                                        Colors.blue, // Blue background
                                   ),
                                 ),
                               ],

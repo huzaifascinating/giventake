@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/role_screen.dart';
 import 'package:giventake/splash.dart';
-import 'donor_home_tabs.dart';
 
 const Color primaryColor = Colors.white;
 const Color secondaryColor = Colors.black87;

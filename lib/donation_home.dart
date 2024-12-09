@@ -4,7 +4,7 @@ import 'package:giventake/donor_categoryform.dart';
 import 'main.dart';
 
 class DonationScreen extends StatefulWidget {
-  DonationScreen({super.key});
+  const DonationScreen({super.key});
   @override
   _DonationScreenState createState() => _DonationScreenState();
 }
@@ -76,7 +76,7 @@ class _DonationScreenState extends State<DonationScreen> {
       child: Row(
         children: [
           // Add the info icon to the left of the text
-          Icon(
+          const Icon(
             Icons.info, // Info icon
             color: Colors.grey,
           ),
@@ -197,11 +197,11 @@ class _DonationScreenState extends State<DonationScreen> {
                     });
                   },
                   icon: isSelected
-                      ? Icon(
+                      ? const Icon(
                           Icons.check_circle,
                           color: Colors.green,
                         )
-                      : SizedBox.shrink(), // No icon when not selected
+                      : const SizedBox.shrink(), // No icon when not selected
                   label: Text(
                     isSelected ? 'Selected' : 'Select',
                     style: TextStyle(
@@ -210,7 +210,7 @@ class _DonationScreenState extends State<DonationScreen> {
                     ),
                   ),
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     backgroundColor: isSelected
                         ? Colors.green.shade50
                         : Colors.grey.shade300, // Grey color when not selected

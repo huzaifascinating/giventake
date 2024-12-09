@@ -8,6 +8,8 @@ class DonationHistoryScreen extends StatelessWidget {
     {'title': 'Clothes for Shelter C', 'date': 'Nov 15, 2024'},
   ];
 
+  DonationHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,19 +29,19 @@ class DonationHistoryScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(
-                leading: Icon(Icons.volunteer_activism, color: lightBlue),
+                leading: const Icon(Icons.volunteer_activism, color: lightBlue),
                 title: Text(
                   donation['title']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: secondaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 subtitle: Text(
                   donation['date']!,
-                  style: TextStyle(color: secondaryColor),
+                  style: const TextStyle(color: secondaryColor),
                 ),
-                trailing: Icon(Icons.arrow_forward, color: darkBlue),
+                trailing: const Icon(Icons.arrow_forward, color: darkBlue),
                 onTap: () {
                   // Add navigation or actions here
                 },

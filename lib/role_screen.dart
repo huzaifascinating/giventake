@@ -58,9 +58,9 @@ class ChooseRoleScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Icon(
                             Icons.business,
                             size: 28, // Reduced icon size
@@ -100,9 +100,9 @@ class ChooseRoleScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Icon(
                             Icons.volunteer_activism,
                             size: 28, // Reduced icon size
