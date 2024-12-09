@@ -4,8 +4,7 @@ import 'donor_selectorg.dart';
 class DonorCategoryForm extends StatelessWidget {
   final List<String> selectedCategories;
 
-  const DonorCategoryForm({Key? key, required this.selectedCategories})
-      : super(key: key);
+  const DonorCategoryForm({super.key, required this.selectedCategories});
 
   @override
   @override
@@ -49,6 +48,14 @@ class DonorCategoryForm extends StatelessWidget {
                         builder: (context) => const DonorSelector()),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -63,14 +70,6 @@ class DonorCategoryForm extends StatelessWidget {
                     ),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
               ),
             )
 
@@ -84,8 +83,7 @@ class DonorCategoryForm extends StatelessWidget {
 class DonationCategoryCard extends StatefulWidget {
   final String category;
 
-  const DonationCategoryCard({Key? key, required this.category})
-      : super(key: key);
+  const DonationCategoryCard({super.key, required this.category});
 
   @override
   _DonationCategoryCardState createState() => _DonationCategoryCardState();

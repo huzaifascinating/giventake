@@ -29,7 +29,7 @@ class DonorLogin extends StatelessWidget {
               child: Container(
                 width: 80, // Circle width
                 height: 80, // Circle height
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: lightBlue, // Circle background color
                 ),
@@ -42,21 +42,21 @@ class DonorLogin extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             // Email field with icon
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 labelText: 'Email',
-                prefixIcon: const Icon(Icons.email, color: lightBlue),
-                border: const UnderlineInputBorder(),
+                prefixIcon: Icon(Icons.email, color: lightBlue),
+                border: UnderlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 20),
             // Password field with icon
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 labelText: 'Password',
-                prefixIcon: const Icon(Icons.lock, color: lightBlue),
-                border: const UnderlineInputBorder(),
+                prefixIcon: Icon(Icons.lock, color: lightBlue),
+                border: UnderlineInputBorder(),
               ),
               obscureText: true,
             ),

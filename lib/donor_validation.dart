@@ -6,10 +6,10 @@ class DonorValidationPage extends StatefulWidget {
   final String organizationIcon;
 
   const DonorValidationPage({
-    Key? key,
+    super.key,
     required this.organizationName,
     required this.organizationIcon,
-  }) : super(key: key);
+  });
 
   @override
   _DonorValidationPageState createState() => _DonorValidationPageState();
@@ -82,7 +82,7 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                 ),
                 const SizedBox(height: 20.0), // Add some space
                 // Limit the width of the LinearProgressIndicator
-                Container(
+                SizedBox(
                   width: 200, // Set width here
                   child: LinearProgressIndicator(
                     value: null, // Indeterminate progress
