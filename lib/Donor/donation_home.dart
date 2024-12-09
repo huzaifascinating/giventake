@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/donor_categoryform.dart';
+import 'package:giventake/Donor/donor_categoryform.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class DonationScreen extends StatefulWidget {
   const DonationScreen({super.key});

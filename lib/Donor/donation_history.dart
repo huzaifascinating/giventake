@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import '../main.dart';
 
 class DonationHistoryScreen extends StatelessWidget {
   final List<Map<String, String>> donations = [
@@ -14,7 +14,6 @@ class DonationHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(

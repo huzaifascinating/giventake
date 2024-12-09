@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/donation_history.dart';
-import 'package:giventake/donation_home.dart';
+import 'package:giventake/Donor/donation_history.dart';
+import 'package:giventake/Donor/donation_home.dart';
+import 'package:giventake/Donor/donor_profile.dart';
 import 'package:giventake/main.dart';
 
 class DonorHome extends StatefulWidget {
@@ -16,7 +17,7 @@ class _DonorHomeState extends State<DonorHome> {
   final List<Widget> _screens = [
     DonationScreen(),
     DonationHistoryScreen(),
-    const Center(child: Text('Profile')), // Replace with your Profile screen
+    DonorProfilePage()
   ];
 
   @override

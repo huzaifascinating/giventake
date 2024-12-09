@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart'; // Import your main.dart or where you have defined your colors
 import 'organisation_register.dart'; // Import the organization registration page
-import 'donor_register.dart'; // Import the donor registration page
+import 'Donor/donor_register.dart'; // Import the donor registration page
 import 'main.dart';
 
 class ChooseRoleScreen extends StatelessWidget {
@@ -80,7 +80,7 @@ class ChooseRoleScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 15),
                 // Donor Button
                 Expanded(
                   child: SizedBox(
