@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/main.dart';
 import 'role_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +14,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        color: splashBackgroundColor, // Set blue background color here
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF1A1D23),
+              Color(0xFF121417),
+            ],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -23,9 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
             Column(
               children: <Widget>[
                 Image.asset(
-                  'logo.png',
-                  width: 60,
-                  height: 60,
+                  'assets/logo.png',
+                  width: 100,
+                  height: 100,
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -33,13 +42,23 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    fontFamily: '',
+                    fontFamily: 'Montserrat',
                     color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Empowering kindness',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Montserrat',
+                    color: Colors.white70,
                   ),
                 ),
               ],
             ),
-            const Spacer(flex: 3),
+            const Spacer(flex: 2),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
@@ -48,14 +67,36 @@ class _SplashScreenState extends State<SplashScreen> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: darkBlue,
+                backgroundColor: const Color(0xFF3B3F54),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0,
+                  vertical: 16.0,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                elevation: 5,
               ),
-              child: const Text(
-                'Get Started',
-                style: TextStyle(color: Colors.white),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Icon(
+                    Icons.arrow_right,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    'Get Started',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const Spacer(flex: 2),
+            const Spacer(flex: 1),
           ],
         ),
       ),

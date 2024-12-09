@@ -25,7 +25,7 @@ class ChooseRoleScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: darkBlue,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -45,7 +45,7 @@ class ChooseRoleScreen extends StatelessWidget {
                     height: 60, // Reduced button height
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: darkBlue, // Dark blue color
+                        backgroundColor: lightBlue, // Dark blue color
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -70,7 +70,7 @@ class ChooseRoleScreen extends StatelessWidget {
                           Text(
                             'Organization',
                             style: TextStyle(
-                              fontSize: 18, // Reduced font size
+                              fontSize: 16, // Reduced font size
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -87,7 +87,7 @@ class ChooseRoleScreen extends StatelessWidget {
                     height: 60, // Reduced button height
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: darkBlue, // Light blue color
+                        backgroundColor: lightBlue, // Light blue color
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -112,7 +112,7 @@ class ChooseRoleScreen extends StatelessWidget {
                           Text(
                             'Donor',
                             style: TextStyle(
-                              fontSize: 18, // Reduced font size
+                              fontSize: 16, // Reduced font size
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
