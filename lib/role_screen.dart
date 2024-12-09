@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart'; // Import your main.dart or where you have defined your colors
-import 'organisation_register.dart'; // Import the organization registration page
+import 'Organization/organisation_register.dart'; // Import the organization registration page
 import 'Donor/donor_register.dart'; // Import the donor registration page
 import 'main.dart';
 

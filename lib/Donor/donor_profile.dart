@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/Donor/donor_personal_information.dart';
+import 'package:giventake/Donor/donor_support.dart';
 
 class DonorProfilePage extends StatelessWidget {
   // Dummy data for the donor profile
@@ -61,7 +62,8 @@ class DonorProfilePage extends StatelessWidget {
             icon: Icons.help,
             title: "Help & Support",
             onTap: () {
-              // Handle Help & Support action
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HelpSupportPage()));
             },
           ),
           const Spacer(), // Push the logout button to the bottom

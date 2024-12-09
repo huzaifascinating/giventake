@@ -15,6 +15,14 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final TextEditingController _organizationNameController =
+      TextEditingController();
+  final TextEditingController _registrationNumberController =
+      TextEditingController();
+  final TextEditingController _missionStatementController =
+      TextEditingController();
+  final TextEditingController _bankAccountController = TextEditingController();
+  final TextEditingController _scopeController = TextEditingController();
 
   final FocusNode _passwordFocusNode =
       FocusNode(); // FocusNode for password field
@@ -24,6 +32,10 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
   bool _hasUppercase = false;
   bool _hasSpecialCharacter = false;
   bool _isLengthValid = false;
+
+  String? _organizationType;
+  String? _donationType;
+  bool _isTaxExempt = false;
 
   @override
   void initState() {
@@ -105,12 +117,171 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               ),
               const SizedBox(height: 30),
               // Organization Name field with icon
-              const TextField(
-                decoration: InputDecoration(
+              TextFormField(
+                controller: _organizationNameController,
+                decoration: const InputDecoration(
                   labelText: 'Organization Name',
                   prefixIcon: Icon(Icons.business, color: lightBlue),
                   border: UnderlineInputBorder(),
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Organization name is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              // Registration/License Number field
+              TextFormField(
+                controller: _registrationNumberController,
+                decoration: const InputDecoration(
+                  labelText: 'Registration/License Number',
+                  prefixIcon: Icon(Icons.confirmation_number, color: lightBlue),
+                  border: UnderlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Registration number is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              // Type of Organization (Radio Buttons)
+              const Text('Type of Organization'),
+              Row(
+                children: [
+                  Radio<String>(
+                    value: 'NGO',
+                    groupValue: _organizationType,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _organizationType = value;
+                      });
+                    },
+                  ),
+                  const Text('NGO'),
+                  Radio<String>(
+                    value: 'Non-Profit',
+                    groupValue: _organizationType,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _organizationType = value;
+                      });
+                    },
+                  ),
+                  const Text('Non-Profit'),
+                  Radio<String>(
+                    value: 'Charity',
+                    groupValue: _organizationType,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _organizationType = value;
+                      });
+                    },
+                  ),
+                  const Text('Charity'),
+                ],
+              ),
+              const SizedBox(height: 20),
+              // Mission Statement field
+              TextFormField(
+                controller: _missionStatementController,
+                decoration: const InputDecoration(
+                  labelText: 'Mission Statement',
+                  prefixIcon: Icon(Icons.description, color: lightBlue),
+                  border: UnderlineInputBorder(),
+                ),
+                maxLines: 3,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Mission statement is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              // Bank Account Details field
+              TextFormField(
+                controller: _bankAccountController,
+                decoration: const InputDecoration(
+                  labelText: 'Bank Account Details',
+                  prefixIcon: Icon(Icons.account_balance, color: lightBlue),
+                  border: UnderlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Bank account details are required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              // Scope of Operations field
+              TextFormField(
+                controller: _scopeController,
+                decoration: const InputDecoration(
+                  labelText: 'Scope of Operations',
+                  prefixIcon: Icon(Icons.location_on, color: lightBlue),
+                  border: UnderlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Scope of operations is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              // Types of Donations Accepted (Checkbox)
+              const Text('Types of Donations Accepted'),
+              CheckboxListTile(
+                title: const Text('Funds'),
+                value: _donationType == 'Funds',
+                onChanged: (bool? value) {
+                  setState(() {
+                    _donationType = value == true ? 'Funds' : null;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: const Text('Goods'),
+                value: _donationType == 'Goods',
+                onChanged: (bool? value) {
+                  setState(() {
+                    _donationType = value == true ? 'Goods' : null;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: const Text('Food'),
+                value: _donationType == 'Food',
+                onChanged: (bool? value) {
+                  setState(() {
+                    _donationType = value == true ? 'Food' : null;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: const Text('Services'),
+                value: _donationType == 'Services',
+                onChanged: (bool? value) {
+                  setState(() {
+                    _donationType = value == true ? 'Services' : null;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              // Tax Exempt checkbox
+              CheckboxListTile(
+                title: const Text('Tax-Exempt Organization'),
+                value: _isTaxExempt,
+                onChanged: (bool? value) {
+                  setState(() {
+                    _isTaxExempt = value ?? false;
+                  });
+                },
               ),
               const SizedBox(height: 20),
               // Email field with validation

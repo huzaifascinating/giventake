@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
+import 'donor_report.dart';
 
 class DonationHistoryScreen extends StatelessWidget {
   final List<Map<String, String>> donations = [
@@ -42,7 +43,28 @@ class DonationHistoryScreen extends StatelessWidget {
                 ),
                 trailing: const Icon(Icons.arrow_forward, color: darkBlue),
                 onTap: () {
-                  // Add navigation or actions here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DonorReport(
+                        donationDetails: {
+                          'title': donation['title']!,
+                          'date': donation['date']!,
+                          'donorName': 'John Doe', // Dummy data
+                          'organization': 'Shelter A', // Dummy data
+                          'category': 'Clothing', // Dummy data
+                          'additionalInfo':
+                              'Provided 100 clothing items.', // Dummy data
+                          'itemImages':
+                              'https://i0.wp.com/movingtips.wpengine.com/wp-content/uploads/2021/01/donation.jpg?w=1200&ssl=1', // Replace with actual image URL
+                          'orgImages':
+                              'https://jdcwelfare.org/wp-content/uploads/2023/05/dastarkhuwan-1024x768-1.jpg', // Replace with actual image URL
+                          'customMessage':
+                              'Thank you for your generous support. Your donation has brought warmth and hope to many.',
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
             );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart'; // Import your main.dart or where you have defined your colors
-import 'donor_home_tabs.dart';
+import 'donor_home.dart';
 
 class DonorLogin extends StatelessWidget {
   const DonorLogin({super.key});
