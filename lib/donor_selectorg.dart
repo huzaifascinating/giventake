@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'donor_validation.dart'; // Import DonorValidation page
+import 'donor_saylani.dart';
+import 'donor_jdc.dart';
+import 'donor_edhi.dart';
+import 'donor_chippa.dart';
 
 class DonorSelector extends StatelessWidget {
   const DonorSelector({Key? key}) : super(key: key);
@@ -69,7 +73,6 @@ class DonorSelector extends StatelessWidget {
                       ),
                       const SizedBox(width: 16.0),
 
-                      // Organization Name and Location
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,18 +106,45 @@ class DonorSelector extends StatelessWidget {
                         ),
                       ),
 
-                      // More Info Button
                       TextButton.icon(
                         onPressed: () {
-                          // Info button action
+                          if (organization['name'] == 'Saylani') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DonorSaylani(),
+                              ),
+                            );
+                          } else if (organization['name'] == 'JDC') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DonorJDC(),
+                              ),
+                            );
+                          } else if (organization['name'] == 'Edhi') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DonorEdhi(),
+                              ),
+                            );
+                          } else if (organization['name'] == 'Chipa') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DonorChippa(),
+                              ),
+                            );
+                          }
                         },
                         icon: const Icon(
                           Icons.info,
-                          color: Colors.blue,
+                          color: Colors.grey,
                         ),
                         label: const Text(
                           'More Info',
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(color: Colors.grey),
                         ),
                       ),
                     ],
