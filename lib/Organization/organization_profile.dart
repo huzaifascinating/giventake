@@ -53,6 +53,8 @@ class ProfileTab extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
         title: const Text(
           'Profile',
           style: TextStyle(color: Colors.black),
@@ -70,7 +72,7 @@ class ProfileTab extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 5),
 
             const Center(
               child: Text(
@@ -82,7 +84,7 @@ class ProfileTab extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 35),
 
             ...profileOptions.map(
               (option) {
