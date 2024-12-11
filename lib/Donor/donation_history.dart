@@ -14,6 +14,16 @@ class DonationHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'My Donations',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       backgroundColor: backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16.0),

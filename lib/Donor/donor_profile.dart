@@ -9,103 +9,114 @@ class DonorProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 20), // Spacing below AppBar
-          // Profile picture and name
-          CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.blue.shade100,
-            child: const Icon(
-              Icons.person,
-              size: 60,
-              color: Colors.blue,
+    final List<Map<String, dynamic>> profileOptions = [
+      {
+        'icon': Icons.info,
+        'title': 'Personal Information',
+        'color': Colors.blue,
+        'onTap': () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DonorPersonalInfoPage(),
             ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            donorName,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+          );
+        },
+      },
+      {
+        'icon': Icons.help,
+        'title': 'Help & Support',
+        'color': Colors.blue,
+        'onTap': () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HelpSupportPage(),
             ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            donorEmail,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(height: 30), // Spacing before options
-          // Profile options
-          _buildOption(
-            icon: Icons.info,
-            title: "Personal Information",
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PersonalInformationForm()));
-            },
-          ),
-          // _buildOption(
-          //   icon: Icons.settings,
-          //   title: "Settings",
-          //   onTap: () {
-          //     // Handle Settings action
-          //   },
-          // ),
-          _buildOption(
-            icon: Icons.help,
-            title: "Help & Support",
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HelpSupportPage()));
-            },
-          ),
-          const Spacer(), // Push the logout button to the bottom
-          _buildOption(
-            icon: Icons.logout,
-            title: "Logout",
-            onTap: () {
-              // Handle Logout action
-              Navigator.pop(context); // For now, navigate back
-            },
-            textColor: Colors.red,
-            iconColor: Colors.red,
-          ),
-          const SizedBox(height: 20), // Spacing at the bottom
-        ],
-      ),
-    );
-  }
+          );
+        },
+      },
+      {
+        'icon': Icons.logout,
+        'title': 'Logout',
+        'color': Colors.red,
+        'onTap': () {
+          Navigator.pop(context); // For now, navigate back
+        },
+      },
+    ];
 
-  Widget _buildOption({
-    required IconData icon,
-    required String title,
-    required VoidCallback onTap,
-    Color textColor = Colors.black,
-    Color iconColor = Colors.black,
-  }) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: iconColor,
-        size: 28,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: textColor,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.black),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.black),
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: onTap,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            // Profile Icon
+            const Center(
+              child: Icon(
+                Icons.account_circle,
+                size: 120,
+                color: Colors.blue,
+              ),
+            ),
+            const SizedBox(height: 5),
+
+            // Donor Name
+            Center(
+              child: Text(
+                donorName,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+
+            // Donor Email
+            Center(
+              child: Text(
+                donorEmail,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            const SizedBox(height: 35),
+
+            // Profile Options
+            ...profileOptions.map(
+              (option) {
+                return Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(option['icon'], color: option['color']),
+                      title: Text(option['title']),
+                      trailing: const Icon(Icons.arrow_forward_ios,
+                          color: Colors.black),
+                      onTap: option['onTap'],
+                    ),
+                    const Divider(color: Colors.grey),
+                  ],
+                );
+              },
+            ).toList(),
+          ],
+        ),
+      ),
     );
   }
 }

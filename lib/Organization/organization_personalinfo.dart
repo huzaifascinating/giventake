@@ -1,21 +1,48 @@
 import 'package:flutter/material.dart';
 
-class DonorPersonalInfoPage extends StatelessWidget {
-  // Dummy data for the initial fields
-  final String name = "John Doe";
-  final String email = "johndoe@example.com";
-  final String phoneNumber = "+1234567890";
-  final String location = "123 Main Street, Springfield";
-  final String dob = "01 January 1990";
+class OrganizationPersonalInfoPage extends StatelessWidget {
+  const OrganizationPersonalInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     // Placeholder data array with icons added
-    final List<Map<String, dynamic>> donorInfo = [
-      {'label': 'Email', 'value': email, 'icon': Icons.email},
-      {'label': 'Phone Number', 'value': phoneNumber, 'icon': Icons.phone},
-      {'label': 'Location', 'value': location, 'icon': Icons.location_on},
-      {'label': 'Date of Birth', 'value': dob, 'icon': Icons.cake},
+    final List<Map<String, dynamic>> orgInfo = [
+      {
+        'label': 'Organization Name',
+        'value': 'Saylani Welfare',
+        'icon': Icons.business
+      },
+      {
+        'label': 'Email',
+        'value': 'saylani.org@example.com',
+        'icon': Icons.email
+      },
+      {'label': 'Logo', 'value': 'assets/saylani.png', 'icon': Icons.image},
+      {
+        'label': 'Registration/License Number',
+        'value': '123456789',
+        'icon': Icons.credit_card
+      },
+      {
+        'label': 'Type of Organization',
+        'value': 'Non-Profit',
+        'icon': Icons.account_balance
+      },
+      {
+        'label': 'Mission Statement',
+        'value': 'To serve the underprivileged and create a better future.',
+        'icon': Icons.message
+      },
+      {
+        'label': 'Scope of Operations',
+        'value': 'National',
+        'icon': Icons.public
+      },
+      {
+        'label': 'Type of Donations Accepted',
+        'value': 'Money, Goods, Services',
+        'icon': Icons.monetization_on
+      },
     ];
 
     return Scaffold(
@@ -24,7 +51,7 @@ class DonorPersonalInfoPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         centerTitle: true,
         title: const Text(
-          'Personal Information',
+          'Organization Info',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -33,27 +60,24 @@ class DonorPersonalInfoPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // Donor icon, Name, and Email in a row
+            // Organization Logo, Name, and Email in a row
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Donor icon
-                const CircleAvatar(
+                // Organization logo from the array
+                CircleAvatar(
                   radius: 40,
-                  backgroundColor: Colors.blueAccent,
-                  child: Icon(
-                    Icons.person,
-                    size: 40,
-                    color: Colors.white,
-                  ),
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: AssetImage(
+                      orgInfo[2]['value']!), // Accessing logo from the array
                 ),
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Donor name
+                    // Organization name from the array
                     Text(
-                      name,
+                      orgInfo[0]['value']!, // Accessing name from the array
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -61,16 +85,16 @@ class DonorPersonalInfoPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    // Email
+                    // Email from the array
                     Row(
                       children: [
                         Icon(
-                          donorInfo[0]['icon'], // Email icon
+                          orgInfo[1]['icon'], // Email icon
                           color: Colors.blue,
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          donorInfo[0]
+                          orgInfo[1]
                               ['value']!, // Accessing email from the array
                           style: const TextStyle(
                             fontSize: 14,
@@ -87,7 +111,9 @@ class DonorPersonalInfoPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             // List of other information with icons and horizontal dividers
-            for (var i = 1; i < donorInfo.length; i++)
+            for (var i = 3;
+                i < orgInfo.length;
+                i++) // Skipping first three items
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -96,12 +122,12 @@ class DonorPersonalInfoPage extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          donorInfo[i]['icon'],
+                          orgInfo[i]['icon'],
                           color: Colors.blue,
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          donorInfo[i]['label']!,
+                          orgInfo[i]['label']!,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -112,7 +138,7 @@ class DonorPersonalInfoPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    donorInfo[i]['value']!,
+                    orgInfo[i]['value']!,
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.normal,

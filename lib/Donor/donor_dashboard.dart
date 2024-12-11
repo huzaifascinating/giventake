@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/Donor/donor_categoryform.dart';
+import 'donor_notifications.dart';
 
 import '../main.dart';
 
@@ -31,6 +32,27 @@ class _DonationScreenState extends State<DonationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text(
+          'Welcome, Username',
+          style: TextStyle(color: secondaryColor),
+        ),
+        centerTitle: true,
+        backgroundColor: primaryColor,
+        elevation: 1,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DonorNotificationsPage()));
+            },
+          ),
+        ],
+      ),
       backgroundColor: backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(13.0),

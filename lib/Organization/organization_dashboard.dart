@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:giventake/Organization/organization_notifications.dart';
 import 'package:giventake/main.dart';
 import 'organization_requests.dart';
+import 'organization_highlight.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -58,7 +59,6 @@ class DashboardTab extends StatelessWidget {
               );
             },
           )
-
         ],
       ),
       body: Padding(
@@ -83,7 +83,6 @@ class DashboardTab extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 15),
               Column(
                 children: [
                   const SizedBox(height: 15),
@@ -107,7 +106,7 @@ class DashboardTab extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(height: 13),
+                        const SizedBox(height: 10),
                       ],
                     );
                   }),
@@ -137,17 +136,16 @@ class DashboardTab extends StatelessWidget {
     );
   }
 
-
   Widget _buildFullWidthOrderContainer({
     required String title,
     required int count,
     required IconData icon,
     required Color color,
     required Color contentColor,
-    VoidCallback ? onTap,
+    VoidCallback? onTap,
   }) {
     return GestureDetector(
-      onTap: onTap ?? (){}, // Handle tap
+      onTap: onTap ?? () {}, // Handle tap
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -173,7 +171,7 @@ class DashboardTab extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: contentColor,
                   ),
@@ -222,7 +220,12 @@ class DashboardTab extends StatelessWidget {
                 builder: (context) => const OrganizationRequestsPage()),
           );
         } else if (title == 'Add Highlights') {
-          // Navigate to the highlights page
+          // Navigate to the Add Highlight Page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const OrganizationHighlightPage()),
+          );
         }
       },
     );

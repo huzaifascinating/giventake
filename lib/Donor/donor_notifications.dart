@@ -9,8 +9,7 @@ class DonorNotificationsPage extends StatelessWidget {
     final List<Map<String, dynamic>> notifications = [
       {
         'title': 'Donation Accepted',
-        'description':
-            'Donation request for 50 kg of rice has been accepted.',
+        'description': 'Donation request for 50 kg of rice has been accepted.',
         'time': '1 day ago',
         'icon': Icons.check_circle,
       },
@@ -26,7 +25,7 @@ class DonorNotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),

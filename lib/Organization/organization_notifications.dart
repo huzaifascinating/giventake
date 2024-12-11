@@ -11,7 +11,7 @@ class OrganizationNotificationsPage extends StatelessWidget {
         'title': 'New Donation Request',
         'description': 'A new donation request has been made by Ali Ahmed.',
         'time': '2 hours ago',
-        'icon': Icons.access_alarm, 
+        'icon': Icons.access_alarm,
       },
       {
         'title': 'Donation Accepted',
@@ -24,20 +24,20 @@ class OrganizationNotificationsPage extends StatelessWidget {
         'title': 'New Donation Request',
         'description': 'A new donation request has been made by Sara ali.',
         'time': '2 hours ago',
-        'icon': Icons.access_alarm, 
+        'icon': Icons.access_alarm,
       },
       {
         'title': 'New Donation Request',
         'description': 'A new donation request has been made by John Doe.',
         'time': '2 hours ago',
-        'icon': Icons.access_alarm, 
+        'icon': Icons.access_alarm,
       },
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Notifications'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),

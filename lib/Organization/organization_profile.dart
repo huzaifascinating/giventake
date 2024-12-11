@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart';
+import 'organisation_login.dart';
+import 'organization_personalinfo.dart';
+import 'organization_reports.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});
@@ -20,7 +23,11 @@ class ProfileTab extends StatelessWidget {
         'title': 'Personal Info',
         'color': Colors.blue,
         'onTap': () {
-          // Navigate to personal info
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const OrganizationPersonalInfoPage()),
+          );
         }
       },
       {
@@ -28,15 +35,10 @@ class ProfileTab extends StatelessWidget {
         'title': 'Impact Reports',
         'color': Colors.blue,
         'onTap': () {
-          // Navigate to reviews
-        }
-      },
-      {
-        'icon': Icons.support_agent,
-        'title': 'Contact Support',
-        'color': Colors.blue, // Assuming darkBlue is defined
-        'onTap': () {
-          // Navigate to contact support
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ImpactReportPage()),
+          );
         }
       },
       {
@@ -44,7 +46,10 @@ class ProfileTab extends StatelessWidget {
         'title': 'Logout',
         'color': Colors.red,
         'onTap': () {
-          // Implement logout functionality
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const OrganizationLogin()),
+          );
         }
       },
     ];

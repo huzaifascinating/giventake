@@ -24,30 +24,6 @@ class _DonorHomeState extends State<DonorHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.person),
-        //   onPressed: () {
-        //     // Handle user profile action
-        //   },
-        // ),
-        title: const Text(
-          'Welcome, Username',
-          style: TextStyle(color: secondaryColor),
-        ),
-        centerTitle: true,
-        backgroundColor: primaryColor,
-        elevation: 1,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const DonorNotificationsPage()));
-            },
-          ),
-        ],
-      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
