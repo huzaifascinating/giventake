@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/main.dart'; // Assuming you have this file for main.dart
-import 'organization_donationinfo.dart'; // Assuming this is the page to navigate to
+import 'package:giventake/main.dart'; 
+import 'organization_donationinfo.dart';
 
 class OrganizationRequestsPage extends StatelessWidget {
   const OrganizationRequestsPage({super.key});
@@ -18,9 +18,9 @@ class OrganizationRequestsPage extends StatelessWidget {
         title: const Text('Donation Requests'),
         centerTitle: true,
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: secondaryColor),
         elevation: 1,
-        automaticallyImplyLeading: true, // Back button enabled
+        automaticallyImplyLeading: true, 
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -54,7 +54,7 @@ class OrganizationRequestsPage extends StatelessWidget {
                       const Icon(
                         Icons.person,
                         size: 20,
-                        color: Colors.black,
+                        color: secondaryColor,
                       ),
                       const SizedBox(width: 5), // Space between icon and name
                       Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/Donor/donation_history.dart';
 import 'package:giventake/Donor/donor_dashboard.dart';
+import 'package:giventake/Donor/donor_notifications.dart';
 import 'package:giventake/Donor/donor_profile.dart';
 import 'package:giventake/main.dart';
 
@@ -15,7 +16,7 @@ class _DonorHomeState extends State<DonorHome> {
   int _currentIndex = 0; // Track the selected bottom navigation item
 
   final List<Widget> _screens = [
-    DonationScreen(),
+    const DonationScreen(),
     DonationHistoryScreen(),
     DonorProfilePage()
   ];
@@ -24,24 +25,25 @@ class _DonorHomeState extends State<DonorHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.person),
-          onPressed: () {
-            // Handle user profile action
-          },
-        ),
+        automaticallyImplyLeading: false,
+        // leading: IconButton(
+        //   icon: const Icon(Icons.person),
+        //   onPressed: () {
+        //     // Handle user profile action
+        //   },
+        // ),
         title: const Text(
           'Welcome, Username',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: secondaryColor),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: primaryColor,
         elevation: 1,
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              // Handle notification action
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const DonorNotificationsPage()));
             },
           ),
         ],
@@ -71,7 +73,7 @@ class _DonorHomeState extends State<DonorHome> {
             _currentIndex = index; // Update the selected tab index
           });
         },
-        backgroundColor: Colors.white,
+        backgroundColor: primaryColor,
         selectedLabelStyle: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.bold,

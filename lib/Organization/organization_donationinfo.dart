@@ -16,21 +16,48 @@ class OrganizationDonationInfoPage extends StatelessWidget {
 
     // Placeholder data for donation details
     final donationDetails = [
-      {'label': 'Donor Name', 'value': request['name'] ?? 'Anonymous'},
-      {'label': 'Location', 'value': request['location'] ?? 'Gulistan-e-Jauhar block 2'},
-      {'label': 'Donation Type', 'value': request['donationType'] ?? 'Food'},
-      {'label': 'Quantity', 'value': request['quantity'] ?? '20Kg'},
-      {'label': 'Contact', 'value': request['quantity'] ?? '03212471039'},
-
       {
-        'label': 'Donation Date',
-        'value': request['donationDate'] ?? '10/12/2024'
+        'icon': Icons.person,
+        'label': 'Donor Name',
+        'value': request['name'] ?? 'Anonymous',
       },
       {
+        'icon': Icons.location_on, 
+        'label': 'Location',
+        'value': request['location'] ?? 'Gulistan-e-Jauhar block 2',
+      },
+      {
+        'icon': Icons.category, 
+        'label': 'Donation Type',
+        'value': request['donationType'] ?? 'Food',
+      },
+      {
+        'icon': Icons.description_outlined, 
+        'label': 'Donation Item',
+        'value': request['donationItem'] ?? 'Wedding Leftover Biryani',
+      },
+      {
+        'icon': Icons.scale,
+        'label': 'Quantity',
+        'value': request['quantity'] ?? '20Kg',
+      },
+      {
+        'icon': Icons.phone, 
+        'label': 'Contact',
+        'value': request['contact'] ?? '03212471039',
+      },
+      {
+        'icon': Icons.calendar_today, 
+        'label': 'Donation Date',
+        'value': request['donationDate'] ?? '10/12/2024',
+      },
+      {
+        'icon': Icons.info_outline, 
         'label': 'Additional Info',
-        'value': request['additionalInfo'] ?? 'No Additional Information'
+        'value': request['additionalInfo'] ?? 'No Additional Information',
       },
     ];
+
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +76,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(18.0),
         child: Card(
           elevation: 6,
           shape: RoundedRectangleBorder(
@@ -98,9 +125,9 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                 // Donation Details Section (using donationDetails array)
                 for (var detail in donationDetails)
                   _buildReportItem(
-                    icon: Icons.info_outline,
-                    label: detail['label']!,
-                    value: detail['value']!,
+                    icon: detail['icon'] as IconData,
+                    label: detail['label'] as String,
+                    value: detail['value'] as String,
                   ),
                 const SizedBox(height: 20),
 
