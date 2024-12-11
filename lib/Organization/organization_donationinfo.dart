@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/main.dart';
 
 class OrganizationDonationInfoPage extends StatelessWidget {
   final Map<String, String> request;
@@ -16,12 +17,14 @@ class OrganizationDonationInfoPage extends StatelessWidget {
     // Placeholder data for donation details
     final donationDetails = [
       {'label': 'Donor Name', 'value': request['name'] ?? 'Anonymous'},
-      {'label': 'Location', 'value': request['location'] ?? 'Unknown'},
+      {'label': 'Location', 'value': request['location'] ?? 'Gulistan-e-Jauhar block 2'},
       {'label': 'Donation Type', 'value': request['donationType'] ?? 'Food'},
-      {'label': 'Quantity', 'value': request['quantity'] ?? 'Unknown'},
+      {'label': 'Quantity', 'value': request['quantity'] ?? '20Kg'},
+      {'label': 'Contact', 'value': request['quantity'] ?? '03212471039'},
+
       {
         'label': 'Donation Date',
-        'value': request['donationDate'] ?? 'Not Specified'
+        'value': request['donationDate'] ?? '10/12/2024'
       },
       {
         'label': 'Additional Info',
@@ -33,13 +36,13 @@ class OrganizationDonationInfoPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Donation Details",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: secondaryColor),
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 1,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: secondaryColor),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -64,7 +67,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                       const Icon(
                         Icons.volunteer_activism,
                         size: 50,
-                        color: Colors.blueAccent,
+                        color: lightBlue,
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -73,7 +76,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: secondaryColor,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -104,7 +107,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                 // Donation Images Section
                 if (donationImages.isNotEmpty)
                   _buildImageSection(
-                    label: "Donated Items",
+                    label: "Donation Images",
                     imageUrls: donationImages,
                   ),
 
@@ -120,7 +123,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: secondaryColor,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -136,7 +139,7 @@ class OrganizationDonationInfoPage extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.black87,
+                            color: secondaryColor,
                           ),
                         ),
                       ),

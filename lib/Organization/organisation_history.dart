@@ -31,14 +31,14 @@ class HistoryTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: secondaryColor),
         centerTitle: true,
         title: const Text(
           'History',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: secondaryColor),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.search, color: Colors.black),
+          icon: const Icon(Icons.search, color: secondaryColor),
           onPressed: () {
             // Implement search functionality
           },
@@ -55,7 +55,7 @@ class HistoryTab extends StatelessWidget {
               child: ListTile(
                 contentPadding: const EdgeInsets.all(16),
                 leading: const Icon(Icons.favorite,
-                    size: 40, color: Colors.blue), // Fixed donation icon
+                    size: 40, color: lightBlue), // Fixed donation icon
                 title: Text(
                   donation['donation_name'],
                   style: const TextStyle(
@@ -78,7 +78,7 @@ class HistoryTab extends StatelessWidget {
                 ),
                 trailing: const Icon(
                   Icons.arrow_forward_ios,
-                  color: darkBlue, // Assuming `darkBlue` is defined
+                  color: secondaryColor,
                   size: 20,
                 ),
               ),

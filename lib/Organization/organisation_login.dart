@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/Organization/organisation_register.dart';
 import 'package:giventake/Organization/organization_home.dart';
 import 'package:giventake/main.dart';
 
@@ -16,7 +17,7 @@ class OrganizationLogin extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 1,
-        automaticallyImplyLeading: false, // Remove the back button
+        // automaticallyImplyLeading: false, // Remove the back button
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,9 +35,9 @@ class OrganizationLogin extends StatelessWidget {
                   color: lightBlue, // Circle background color
                 ),
                 child: const Icon(
-                  Icons.people, // Multi-user icon
+                  Icons.business, // Multi-user icon
                   size: 60, // Icon size
-                  color: Colors.white, // Icon color
+                  color: primaryColor, // Icon color
                 ),
               ),
             ),
@@ -85,7 +86,12 @@ class OrganizationLogin extends StatelessWidget {
             Center(
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const OrganizationRegister(),
+                    ),
+                  );
                 },
                 child: const Text(
                   "Don't have an account? Register",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/main.dart';
 
 class HelpSupportPage extends StatelessWidget {
   final List<Map<String, String>> faqs = [
@@ -30,9 +31,9 @@ class HelpSupportPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Help & Support",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: secondaryColor),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: primaryColor,
         centerTitle: true,
         elevation: 1,
         leading: IconButton(
@@ -109,7 +110,7 @@ class HelpSupportPage extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Text(
               faq['answer']!,
-              style: const TextStyle(fontSize: 14, color: Colors.black54),
+              style: const TextStyle(fontSize: 14, color: secondaryColor),
             ),
           ),
         ],
@@ -158,7 +159,7 @@ class HelpSupportPage extends StatelessWidget {
                 icon: const Icon(Icons.send),
                 label: const Text("Send Message"),
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.blueAccent,
+                  foregroundColor: lightBlue,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,
                     vertical: 12,
@@ -183,7 +184,7 @@ class HelpSupportPage extends StatelessWidget {
     required IconData icon,
   }) {
     return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent),
+      leading: Icon(icon, color: lightBlue),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(description),
       onTap: () {

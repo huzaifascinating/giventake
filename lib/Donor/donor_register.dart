@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:giventake/Donor/donor_login.dart';
 import 'package:giventake/main.dart';
 
 class DonorRegistration extends StatefulWidget {
@@ -96,7 +95,7 @@ class _DonorRegistrationState extends State<DonorRegistration> {
                   ),
                   child: const Center(
                     child: Icon(
-                      Icons.person,
+                      Icons.volunteer_activism,
                       size: 60,
                       color: Colors.white,
                     ),
@@ -242,12 +241,7 @@ class _DonorRegistrationState extends State<DonorRegistration> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DonorLogin(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     'Already have an account? Login',

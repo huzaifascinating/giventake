@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/main.dart';
 import 'role_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,11 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF1A1D23),
-              Color(0xFF121417),
+              darkBlue,
+              lightBlue,
             ],
           ),
         ),
@@ -43,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
-                    color: Colors.white,
+                    color: primaryColor,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -53,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                     fontFamily: 'Montserrat',
-                    color: Colors.white70,
+                    color: primaryColor,
                   ),
                 ),
               ],
@@ -67,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF3B3F54),
+                backgroundColor: darkBlue,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 25.0,
                   vertical: 16.0,
@@ -82,13 +83,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: const [
                   Icon(
                     Icons.arrow_right,
-                    color: Colors.white,
+                    color: primaryColor,
                   ),
                   SizedBox(width: 10),
                   Text(
                     'Get Started',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: primaryColor,
                       fontSize: 15.0,
                       fontWeight: FontWeight.w600,
                     ),

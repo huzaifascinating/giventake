@@ -9,12 +9,7 @@ class OrganizationRequestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, String>> requests = [
       {'name': 'Huzaifa', 'request': 'wants to donate food'},
-      {'name': 'Ali', 'request': 'wants to donate clothes'},
-      {'name': 'Sara', 'request': 'wants to donate books'},
-      {'name': 'Sara', 'request': 'wants to donate books'},
-      {'name': 'Sara', 'request': 'wants to donate books'},
-      {'name': 'Sara', 'request': 'wants to donate books'},
-      {'name': 'Sara', 'request': 'wants to donate books'},
+      {'name': 'Ali', 'request': 'wants to donate winter clothes'},
       // More requests can be added here
     ];
 

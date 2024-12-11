@@ -10,7 +10,7 @@ class DashboardTab extends StatelessWidget {
     final List<Map<String, dynamic>> orders = [
       {
         'status': 'Pending Orders',
-        'count': 10,
+        'count': 2,
         'icon': Icons.access_time,
         'color': Colors.red,
         'contentColor': Colors.white
@@ -24,7 +24,7 @@ class DashboardTab extends StatelessWidget {
       },
       {
         'status': 'Total Orders',
-        'count': 60,
+        'count': 52,
         'icon': Icons.list_alt,
         'color': const Color.fromARGB(255, 246, 143, 0),
         'contentColor': Colors.white
@@ -60,14 +60,14 @@ class DashboardTab extends StatelessWidget {
                 children: [
                   Text(
                     'Hello, ',
-                    style: TextStyle(fontSize: 22, color: Colors.black),
+                    style: TextStyle(fontSize: 22, color: secondaryColor),
                   ),
                   Text(
                     'Saylani',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: secondaryColor,
                     ),
                   ),
                 ],
@@ -109,13 +109,13 @@ class DashboardTab extends StatelessWidget {
                     icon: Icons.request_page,
                     context: context,
                   ),
-                  const Divider(color: Colors.black45),
+                  const Divider(color: secondaryColor),
                   _buildOptionItem(
                     title: 'Add Highlights',
                     icon: Icons.star,
                     context: context,
                   ),
-                  const Divider(color: Colors.black45),
+                  const Divider(color: secondaryColor),
                 ],
               ),
             ],

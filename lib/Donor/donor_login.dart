@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giventake/Donor/donor_register.dart';
 import 'package:giventake/main.dart'; // Import your main.dart or where you have defined your colors
 import 'donor_home.dart';
 
@@ -16,7 +17,7 @@ class DonorLogin extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 1,
-        automaticallyImplyLeading: false, // Remove the back button
+        // automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -34,7 +35,7 @@ class DonorLogin extends StatelessWidget {
                   color: lightBlue, // Circle background color
                 ),
                 child: const Icon(
-                  Icons.person, // Single user icon
+                  Icons.volunteer_activism, // Single user icon
                   size: 60, // Icon size
                   color: Colors.white, // Icon color
                 ),
@@ -83,7 +84,12 @@ class DonorLogin extends StatelessWidget {
             Center(
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DonorRegistration(),
+                    ),
+                  );
                 },
                 child: const Text(
                   "Don't have an account? Register",

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart'; // Import your main.dart or where you have defined your colors
-import 'Organization/organisation_register.dart'; // Import the organization registration page
-import 'Donor/donor_register.dart'; // Import the donor registration page
+import 'package:flutter/material.dart'; 
+import 'package:giventake/Donor/donor_login.dart';
+import 'package:giventake/Organization/organisation_login.dart';
 import 'main.dart';
 
 class ChooseRoleScreen extends StatelessWidget {
@@ -9,8 +9,22 @@ class ChooseRoleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set background color to white
-      body: Padding(
+      body: 
+      Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              darkBlue,
+              lightBlue,
+            ],
+          ),
+        ),
+        child: 
+      Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +39,7 @@ class ChooseRoleScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: secondaryColor,
               ),
             ),
             const SizedBox(height: 10),
@@ -33,7 +47,7 @@ class ChooseRoleScreen extends StatelessWidget {
               'Please select whether you are an organization looking to register '
               'or a donor interested in supporting others.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(fontSize: 16, color: secondaryColor),
             ),
             const SizedBox(height: 40),
             Row(
@@ -45,7 +59,7 @@ class ChooseRoleScreen extends StatelessWidget {
                     height: 60, // Reduced button height
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: lightBlue, // Dark blue color
+                        backgroundColor: darkBlue, // Dark blue color
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -54,7 +68,7 @@ class ChooseRoleScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const OrganizationRegister(),
+                            builder: (context) => const OrganizationLogin(),
                           ),
                         );
                       },
@@ -64,14 +78,14 @@ class ChooseRoleScreen extends StatelessWidget {
                           Icon(
                             Icons.business,
                             size: 28, // Reduced icon size
-                            color: Colors.white,
+                            color: primaryColor,
                           ),
                           SizedBox(width: 8),
                           Text(
                             'Organization',
                             style: TextStyle(
                               fontSize: 16, // Reduced font size
-                              color: Colors.white,
+                              color: primaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -87,7 +101,7 @@ class ChooseRoleScreen extends StatelessWidget {
                     height: 60, // Reduced button height
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: lightBlue, // Light blue color
+                        backgroundColor: darkBlue, // Light blue color
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -96,7 +110,7 @@ class ChooseRoleScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const DonorRegistration(),
+                            builder: (context) => const DonorLogin(),
                           ),
                         );
                       },
@@ -106,14 +120,14 @@ class ChooseRoleScreen extends StatelessWidget {
                           Icon(
                             Icons.volunteer_activism,
                             size: 28, // Reduced icon size
-                            color: Colors.white,
+                            color: primaryColor,
                           ),
                           SizedBox(width: 8),
                           Text(
                             'Donor',
                             style: TextStyle(
                               fontSize: 16, // Reduced font size
-                              color: Colors.white,
+                              color: primaryColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -127,6 +141,7 @@ class ChooseRoleScreen extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }

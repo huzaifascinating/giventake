@@ -24,8 +24,8 @@ class ProfileTab extends StatelessWidget {
         }
       },
       {
-        'icon': Icons.star,
-        'title': 'Reviews',
+        'icon': Icons.trending_up,
+        'title': 'Impact Reports',
         'color': Colors.blue,
         'onTap': () {
           // Navigate to reviews
@@ -76,7 +76,7 @@ class ProfileTab extends StatelessWidget {
 
             const Center(
               child: Text(
-                'Helping Hands Organization',
+                'Saylani International Welfare Foundation',
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,

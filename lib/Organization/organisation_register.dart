@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart';
-import 'organisation_login.dart'; // Import the OrganizationLogin page
 
 class OrganizationRegister extends StatefulWidget {
   const OrganizationRegister({super.key});
@@ -109,7 +108,7 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
                     color: lightBlue,
                   ),
                   child: const Icon(
-                    Icons.people,
+                    Icons.business,
                     size: 60,
                     color: Colors.white,
                   ),
@@ -413,13 +412,9 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OrganizationLogin(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
+                  
                   child: const Text(
                     'Already have an account? Login',
                     style: TextStyle(color: lightBlue),
