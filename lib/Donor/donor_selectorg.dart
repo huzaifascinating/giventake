@@ -11,18 +11,30 @@ class DonorSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Example list of organizations
-    final List<Map<String, String>> organizations = [
+    final List<Map<String, dynamic>> organizations = [
       {
         'name': 'Saylani',
         'icon': 'assets/saylani.png',
-        'location': 'Nearest: 6km'
+        'location': 'Nearest: 6km',
+        'donationType': ['Money', 'Food'],
       },
-      {'name': 'JDC', 'icon': 'assets/jdc.png', 'location': 'Nearest: 8km'},
-      {'name': 'Edhi', 'icon': 'assets/edhi.png', 'location': 'Nearest: 10km'},
+      {
+        'name': 'JDC',
+        'icon': 'assets/jdc.png',
+        'location': 'Nearest: 8km',
+        'donationType': ['Money'],
+      },
+      {
+        'name': 'Edhi',
+        'icon': 'assets/edhi.png',
+        'location': 'Nearest: 10km',
+        'donationType': ['Cloths', 'Other'],
+      },
       {
         'name': 'Chipa',
         'icon': 'assets/chippa.png',
-        'location': 'Nearest: 7km'
+        'location': 'Nearest: 7km',
+        'donationType': ['Other', 'Food'],
       },
     ];
 
@@ -47,6 +59,9 @@ class DonorSelector extends StatelessWidget {
         itemCount: organizations.length,
         itemBuilder: (context, index) {
           final organization = organizations[index];
+          final donationTypes = (organization['donationType'] as List<String>)
+              .join(', '); // Combine multiple donation types
+
           return Card(
             elevation: 6,
             margin: const EdgeInsets.only(bottom: 16.0),
@@ -72,7 +87,6 @@ class DonorSelector extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 16.0),
-
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,10 +116,30 @@ class DonorSelector extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 4.0),
+                            // Donation Type Field
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.volunteer_activism,
+                                  size: 16.0,
+                                  color: Colors.grey,
+                                ),
+                                const SizedBox(width: 4.0),
+                                Expanded(
+                                  child: Text(
+                                    'Donations: $donationTypes',
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-
                       TextButton.icon(
                         onPressed: () {
                           if (organization['name'] == 'Saylani') {
@@ -163,7 +197,6 @@ class DonorSelector extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // Show confirmation dialog before navigating
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -178,7 +211,6 @@ class DonorSelector extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    // Close the dialog
                                     Navigator.of(context).pop();
                                   },
                                   child: const Text(
@@ -189,7 +221,6 @@ class DonorSelector extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    // Navigate to the DonorValidationPage
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

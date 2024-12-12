@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'donor_tracking.dart';
 
-class DonorValidationPage extends StatefulWidget {
+class DonorValidationPage extends StatelessWidget {
   final String organizationName;
   final String organizationIcon;
 
@@ -10,52 +10,6 @@ class DonorValidationPage extends StatefulWidget {
     required this.organizationName,
     required this.organizationIcon,
   });
-
-  @override
-  _DonorValidationPageState createState() => _DonorValidationPageState();
-}
-
-class _DonorValidationPageState extends State<DonorValidationPage>
-    with SingleTickerProviderStateMixin {
-  late Timer _timer;
-  int _start = 600;
-  late AnimationController _loadingAnimationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _startTimer();
-    // Initialize AnimationController
-    _loadingAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..repeat(reverse: true);
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_start == 0) {
-        _timer.cancel();
-      } else {
-        setState(() {
-          _start--;
-        });
-      }
-    });
-  }
-
-  String get _formattedTime {
-    int minutes = _start ~/ 60;
-    int seconds = _start % 60;
-    return '$minutes:${seconds.toString().padLeft(2, '0')}';
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    _loadingAnimationController.dispose(); // Dispose AnimationController
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +36,9 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                       width: 200,
                       height: 200,
                     ),
-                    const SizedBox(height: 20.0), // Add some space
-                    // Limit the width of the LinearProgressIndicator
+                    const SizedBox(height: 20.0),
                     SizedBox(
-                      width: 200, // Set width here
+                      width: 200,
                       child: LinearProgressIndicator(
                         value: null, // Indeterminate progress
                         backgroundColor: Colors.grey[300],
@@ -104,12 +57,12 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                     ),
                     const SizedBox(height: 10.0),
                     const Text(
-                      "Hang tight, the organization will contact you shortly\n for verification.",
+                      "Please wait until the organization accepts your request for verification.",
                       style: TextStyle(
                         fontSize: 14.0,
                         color: Colors.grey,
                       ),
-                      textAlign: TextAlign.center, // Center align text
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 30.0),
                     Row(
@@ -119,13 +72,12 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                           children: [
                             Container(
                               decoration: const BoxDecoration(
-                                color: Colors.black12, // Light blue circle
-                                shape: BoxShape.circle, // Circle shape
+                                color: Colors.black12,
+                                shape: BoxShape.circle,
                               ),
-                              padding: const EdgeInsets.all(
-                                  7.0), // Padding inside the circle
+                              padding: const EdgeInsets.all(7.0),
                               child: const Icon(Icons.person,
-                                  size: 25, color: Colors.black), // White icon
+                                  size: 25, color: Colors.black),
                             ),
                             const Text(
                               "Donor",
@@ -149,14 +101,14 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.asset(
-                                widget.organizationIcon,
+                                organizationIcon,
                                 width: 40,
                                 height: 40,
                                 fit: BoxFit.cover,
                               ),
                             ),
                             Text(
-                              widget.organizationName,
+                              organizationName,
                               style: const TextStyle(
                                 fontSize: 10.0,
                                 fontWeight: FontWeight.bold,
@@ -168,34 +120,22 @@ class _DonorValidationPageState extends State<DonorValidationPage>
                       ],
                     ),
                     const SizedBox(height: 20.0),
-                    Container(
-                      width: double.infinity, // Full width
-                      color: Colors.grey[200], // Off-white color
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Center(
-                        child: Text(
-                          _formattedTime,
-                          style: const TextStyle(
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
-          // Add the Next button at the bottom-right
           Positioned(
             bottom: 20.0,
             right: 20.0,
             child: FloatingActionButton(
               onPressed: () {
-                // Handle Next button action
-                print("Next button pressed");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DonorTrackingPage(),
+                  ),
+                );
               },
               backgroundColor: Colors.blue,
               child: const Icon(Icons.arrow_forward, color: Colors.white),
