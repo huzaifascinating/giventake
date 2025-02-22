@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class DonorRegistration extends StatefulWidget {
   const DonorRegistration({super.key});
@@ -57,6 +59,46 @@ class _DonorRegistrationState extends State<DonorRegistration> {
       _hasSpecialCharacter = value.contains(RegExp(r'[!@#\$&*~]'));
       _isLengthValid = value.length >= 8;
     });
+  }
+
+  void _registerDonor() async {
+    if (_formKey.currentState!.validate()) {
+      final url = Uri.parse('http://localhost:3000/api/donor/register');
+
+      final Map<String, dynamic> donorData = {
+        "name": _donorNameController.text.trim(),
+        "email": _emailController.text.trim(),
+        "password": _passwordController.text,
+      };
+
+      try {
+        final response = await http.post(
+          url,
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(donorData),
+        );
+
+        if (response.statusCode == 201) {
+          // Successful registration
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Registration successful!")),
+          );
+          Navigator.pop(context); // Navigate back to login
+        } else {
+          // Failed registration
+          final responseBody = jsonDecode(response.body);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content:
+                    Text(responseBody['message'] ?? "Registration failed")),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: $e")),
+        );
+      }
+    }
   }
 
   @override
@@ -224,11 +266,7 @@ class _DonorRegistrationState extends State<DonorRegistration> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Handle registration logic here
-                    }
-                  },
+                   onPressed: _registerDonor,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: lightBlue,
                     foregroundColor: Colors.white,

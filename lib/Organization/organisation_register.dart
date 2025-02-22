@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:giventake/main.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class OrganizationRegister extends StatefulWidget {
   const OrganizationRegister({super.key});
@@ -22,6 +24,7 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
       TextEditingController();
   final TextEditingController _bankAccountController = TextEditingController();
   final TextEditingController _scopeController = TextEditingController();
+  final TextEditingController _address = TextEditingController();
 
   final FocusNode _passwordFocusNode =
       FocusNode(); // FocusNode for password field
@@ -72,6 +75,70 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
       _isLengthValid = value.length >= 8;
     });
   }
+  
+  Future<void> _registerOrganization() async {
+  if (!_formKey.currentState!.validate()) return;
+
+  print("Register button clicked!");
+  print("Organization Name: ${_organizationNameController.text}");
+  print("Registration Number: ${_registrationNumberController.text}");
+  print("Organization Type: $_organizationType");
+  print("Mission Statement: ${_missionStatementController.text}");
+  print("Bank Account Details: ${_bankAccountController.text}");
+  print("Scope: ${_scopeController.text}");
+  print("Donation Type: $_donationType");
+  print("Tax Exempt: $_isTaxExempt");
+  print("Email: ${_emailController.text}");
+  print("Password: ${_passwordController.text}");
+  print("Address: ${_address.text}");
+
+  final url = Uri.parse('http://localhost:3000/api/organization/register');
+
+  final Map<String, dynamic> data = {
+    "name": _organizationNameController.text,
+    "email": _emailController.text,
+    "password": _passwordController.text,
+    "registration_number": _registrationNumberController.text,
+    "org_type": _organizationType ?? "",
+    "mission_statement": _missionStatementController.text,
+    "bank_details": _bankAccountController.text,
+    "donationType": _donationType ?? "",
+    "scope": _scopeController.text,
+    "tax_exempt": _isTaxExempt,
+    "address": _address.text,
+  };
+
+  try {
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(data),
+    );
+
+    print("Response Status: ${response.statusCode}");
+    print("Response Body: ${response.body}");
+
+    if (response.statusCode == 201) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Registration successful!")),
+      );
+      Navigator.pop(context);
+    } else {
+      final responseData = jsonDecode(response.body);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(responseData["message"] ?? "Registration failed"),
+        ),
+      );
+    }
+  } catch (e) {
+    print("Error: $e");
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Error: $e")),
+    );
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -282,6 +349,22 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
                   });
                 },
               ),
+              const SizedBox(height: 30),
+              // Organization Name field with icon
+              TextFormField(
+                controller: _address,
+                decoration: const InputDecoration(
+                  labelText: 'Organization Address',
+                  prefixIcon: Icon(Icons.business, color: lightBlue),
+                  border: UnderlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Organization address is required';
+                  }
+                  return null;
+                },
+              ),
               const SizedBox(height: 20),
               // Email field with validation
               TextFormField(
@@ -395,11 +478,7 @@ class _OrganizationRegisterState extends State<OrganizationRegister> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Handle registration logic here
-                    }
-                  },
+                  onPressed: _registerOrganization,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: lightBlue,
                     foregroundColor: Colors.white,

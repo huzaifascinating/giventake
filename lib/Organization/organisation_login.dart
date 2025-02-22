@@ -1,10 +1,62 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:giventake/Organization/organisation_register.dart';
 import 'package:giventake/Organization/organization_home.dart';
 import 'package:giventake/main.dart';
 
-class OrganizationLogin extends StatelessWidget {
+class OrganizationLogin extends StatefulWidget {
   const OrganizationLogin({super.key});
+
+  @override
+  _OrganizationLoginState createState() => _OrganizationLoginState();
+}
+
+class _OrganizationLoginState extends State<OrganizationLogin> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
+
+  Future<void> login() async {
+    final String apiUrl = "http://localhost:3000/api/organization/login";
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "email": emailController.text,
+          "password": passwordController.text,
+        }),
+      );
+
+      final responseData = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        // Navigate to Organization Home on success
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OrganizationPage()),
+        );
+      } else {
+        // Show error message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(responseData["message"] ?? "Login failed")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("An error occurred: $e")),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +69,6 @@ class OrganizationLogin extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 1,
-        // automaticallyImplyLeading: false, // Remove the back button
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,26 +76,27 @@ class OrganizationLogin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            // Centered multi-user icon in a circle
+            // Centered multi-user icon
             Center(
               child: Container(
-                width: 80, // Circle width
-                height: 80, // Circle height
+                width: 80,
+                height: 80,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: lightBlue, // Circle background color
+                  color: lightBlue,
                 ),
                 child: const Icon(
-                  Icons.business, // Multi-user icon
-                  size: 60, // Icon size
-                  color: primaryColor, // Icon color
+                  Icons.business,
+                  size: 60,
+                  color: primaryColor,
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            // Email field with icon
-            const TextField(
-              decoration: InputDecoration(
+            // Email field
+            TextField(
+              controller: emailController,
+              decoration: const InputDecoration(
                 labelText: 'Email',
                 prefixIcon: Icon(Icons.email, color: lightBlue),
                 border: UnderlineInputBorder(),
@@ -52,9 +104,10 @@ class OrganizationLogin extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 20),
-            // Password field with icon
-            const TextField(
-              decoration: InputDecoration(
+            // Password field
+            TextField(
+              controller: passwordController,
+              decoration: const InputDecoration(
                 labelText: 'Password',
                 prefixIcon: Icon(Icons.lock, color: lightBlue),
                 border: UnderlineInputBorder(),
@@ -66,19 +119,14 @@ class OrganizationLogin extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const OrganizationPage()), // Fix: correct navigation
-                  );
-                },
+                onPressed: isLoading ? null : login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: lightBlue,
                   foregroundColor: Colors.white,
                 ),
-                child: const Text('Login'),
+                child: isLoading
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text('Login'),
               ),
             ),
             const SizedBox(height: 20),
